@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Open Google Maps</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #4facfe, #00f2fe);
+            height: 100vh;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        button {
+            padding: 15px 30px;
+            font-size: 18px;
+            border: none;
+            border-radius: 8px;
+            background-color: #4285F4;
+            color: white;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background-color: #3367D6;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Open Google Maps Location</h1>
+        <button onclick="openMap()">Open Location</button>
+    </div>
+
+    <script>
+        function openMap() {
+            // Change latitude and longitude here
+            var latitude = 23.0225;
+            var longitude = 72.5714;
+
+            var url = "https://www.google.com/maps/place/23%C2%B001'51.8%22N+72%C2%B033'60.0%22E/@23.0310504,72.5640791,17z/data=!3m1!4b1!4m4!3m3!8m2!3d23.0310504!4d72.566654?hl=en&entry=ttu&g_ep=EgoyMDI2MDIxMS4wIKXMDSoASAFQAw%3D%3D" + latitude + "," + longitude;
+            window.open(url, "_blank");
+        }
+    </script>
+
+</body>
+</html>
