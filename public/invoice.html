@@ -1214,6 +1214,215 @@
             }
         }
 
+        /* ===== RESPONSIVE: TABLETS (max-width: 768px) ===== */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            /* Sheet URL bar stacks */
+            .sheet-url-bar {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .sheet-url-bar label {
+                margin-bottom: 2px;
+            }
+
+            .btn-load-sheet {
+                justify-content: center;
+            }
+
+            /* Search panel header stacks */
+            .search-panel-header {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 12px;
+            }
+
+            /* Buttons wrap into grid */
+            .search-actions {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 8px;
+            }
+
+            .search-actions button {
+                justify-content: center;
+                padding: 10px 12px;
+                font-size: 0.72rem;
+            }
+
+            .search-panel {
+                padding: 14px 16px;
+                margin-bottom: 16px;
+            }
+
+            /* Invoice header stacks */
+            .invoice-header .company-brand {
+                flex-direction: column;
+                text-align: center;
+                gap: 10px;
+            }
+
+            .invoice-header {
+                padding: 24px 20px 0;
+            }
+
+            .invoice-title-block {
+                text-align: center !important;
+            }
+
+            .invoice-title {
+                font-size: 2rem !important;
+            }
+
+            /* Meta bar wraps */
+            .meta-bar {
+                flex-wrap: wrap;
+            }
+
+            .meta-item {
+                flex: 1 1 auto;
+                min-width: 100px;
+                padding: 10px 14px;
+            }
+
+            /* Invoice body */
+            .invoice-body {
+                padding: 16px;
+            }
+
+            .details-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+
+            .invoice-table-wrapper {
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+
+            .totals-card {
+                width: 100%;
+            }
+
+            .payment-section {
+                flex-direction: column;
+                gap: 16px;
+            }
+
+            .terms-section,
+            .invoice-footer {
+                padding-left: 16px;
+                padding-right: 16px;
+            }
+
+            /* Toast on mobile */
+            .toast-container {
+                top: 10px;
+                right: 10px;
+                left: 10px;
+            }
+
+            .toast {
+                max-width: 100%;
+                font-size: 0.78rem;
+                padding: 12px 16px;
+            }
+        }
+
+        /* ===== RESPONSIVE: SMALL PHONES (max-width: 480px) ===== */
+        @media (max-width: 480px) {
+            body {
+                padding: 6px;
+            }
+
+            .search-panel {
+                padding: 12px;
+                border-radius: 10px;
+            }
+
+            /* Buttons stack single column on very small screens */
+            .search-actions {
+                grid-template-columns: 1fr;
+            }
+
+            .sheet-url-input {
+                font-size: 0.75rem;
+                padding: 8px 10px;
+            }
+
+            .search-input {
+                font-size: 0.82rem;
+                padding: 10px 14px 10px 36px;
+            }
+
+            .search-icon {
+                left: 10px;
+                font-size: 0.95rem;
+            }
+
+            .stat-chip {
+                font-size: 0.62rem;
+                padding: 3px 8px;
+            }
+
+            .invoice-page {
+                border-radius: 10px;
+            }
+
+            .invoice-header {
+                padding: 20px 16px 0;
+                border-radius: 10px 10px 0 0;
+            }
+
+            .brand-name {
+                font-size: 1.2rem !important;
+            }
+
+            .brand-sub {
+                font-size: 0.65rem !important;
+            }
+
+            .invoice-title {
+                font-size: 1.6rem !important;
+            }
+
+            .meta-item {
+                padding: 8px 10px;
+                min-width: 80px;
+            }
+
+            .meta-item .m-label {
+                font-size: 0.55rem;
+            }
+
+            .meta-item .m-value {
+                font-size: 0.78rem;
+            }
+
+            .card-header {
+                font-size: 0.7rem;
+            }
+
+            .invoice-body {
+                padding: 12px;
+            }
+
+            .footer-links {
+                flex-direction: column;
+                gap: 6px !important;
+            }
+
+            /* Progress overlay card */
+            .progress-card {
+                margin: 16px;
+                padding: 24px 20px;
+            }
+        }
+
         /* Sheet URL Input Bar */
         .sheet-url-bar {
             display: flex;
