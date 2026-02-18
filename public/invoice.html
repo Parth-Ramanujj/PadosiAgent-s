@@ -974,6 +974,29 @@
             font-size: 0.75rem;
         }
 
+        /* Refresh Button */
+        .btn-refresh {
+            padding: 8px 20px;
+            border: none;
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 0.78rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: all .2s;
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            color: white;
+            box-shadow: 0 2px 8px rgba(245, 158, 11, .3);
+        }
+
+        .btn-refresh:hover {
+            box-shadow: 0 4px 12px rgba(245, 158, 11, .4);
+            transform: translateY(-1px);
+        }
+
         /* Generate All Button */
         .btn-generate {
             padding: 8px 20px;
@@ -998,6 +1021,35 @@
         }
 
         .btn-generate:disabled {
+            opacity: .4;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* Email All Button */
+        .btn-email {
+            padding: 8px 20px;
+            border: none;
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 0.78rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: all .2s;
+            background: linear-gradient(135deg, #8b5cf6, #6d28d9);
+            color: white;
+            box-shadow: 0 2px 8px rgba(139, 92, 246, .3);
+        }
+
+        .btn-email:hover {
+            box-shadow: 0 4px 12px rgba(139, 92, 246, .4);
+            transform: translateY(-1px);
+        }
+
+        .btn-email:disabled {
             opacity: .4;
             cursor: not-allowed;
             transform: none;
@@ -1161,19 +1213,184 @@
                 padding: 16px 20px;
             }
         }
+
+        /* Sheet URL Input Bar */
+        .sheet-url-bar {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 14px;
+            align-items: center;
+        }
+
+        .sheet-url-bar label {
+            font-size: 0.72rem;
+            font-weight: 700;
+            color: var(--gray-500);
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            white-space: nowrap;
+        }
+
+        .sheet-url-input {
+            flex: 1;
+            padding: 10px 14px;
+            border: 2px solid var(--gray-200);
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 0.82rem;
+            color: var(--gray-700);
+            outline: none;
+            transition: border-color .2s, box-shadow .2s;
+            background: var(--gray-50);
+        }
+
+        .sheet-url-input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(30, 115, 190, .12);
+            background: white;
+        }
+
+        .btn-load-sheet {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 0.78rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: all .2s;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            box-shadow: 0 2px 8px rgba(30, 115, 190, .3);
+            white-space: nowrap;
+        }
+
+        .btn-load-sheet:hover {
+            box-shadow: 0 4px 12px rgba(30, 115, 190, .4);
+            transform: translateY(-1px);
+        }
+
+        /* Toast Notification */
+        .toast-container {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 99999;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .toast {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 22px;
+            border-radius: 12px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: white;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, .18);
+            animation: toastIn .4s ease;
+            max-width: 420px;
+            line-height: 1.4;
+        }
+
+        .toast.error {
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+        }
+
+        .toast.success {
+            background: linear-gradient(135deg, #22c55e, #16a34a);
+        }
+
+        .toast.warning {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+        }
+
+        .toast-icon {
+            font-size: 1.3rem;
+            flex-shrink: 0;
+        }
+
+        .toast-close {
+            margin-left: auto;
+            background: none;
+            border: none;
+            color: rgba(255, 255, 255, .7);
+            font-size: 1.1rem;
+            cursor: pointer;
+            padding: 0 0 0 10px;
+            flex-shrink: 0;
+        }
+
+        .toast-close:hover {
+            color: white;
+        }
+
+        .toast.removing {
+            animation: toastOut .3s ease forwards;
+        }
+
+        @keyframes toastIn {
+            from {
+                transform: translateX(120%);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes toastOut {
+            from {
+                transform: translateX(0);
+                opacity: 1;
+            }
+
+            to {
+                transform: translateX(120%);
+                opacity: 0;
+            }
+        }
     </style>
 </head>
 
 <body>
 
+    <!-- Toast Container -->
+    <div class="toast-container" id="toastContainer"></div>
+
     <!-- ===== SEARCH PANEL ===== -->
     <div class="search-panel" id="searchPanel">
+        <!-- Sheet URL Input -->
+        <div class="sheet-url-bar">
+            <label>📊 Sheet URL</label>
+            <input type="text" class="sheet-url-input" id="sheetUrlInput" placeholder="Paste Google Sheet URL here..."
+                value="https://docs.google.com/spreadsheets/d/1A4JZyxJyNJonhJ1ee_CRL8oIPSShde6U1fhB_6PIvZc">
+            <button class="btn-load-sheet" onclick="loadSheet()">
+                📥 Load Sheet
+            </button>
+        </div>
         <div class="search-panel-header">
             <div>
                 <div class="search-panel-title"><span class="icon">📄</span> Invoice Generator</div>
                 <div class="search-panel-subtitle">Search a registered user to generate their GST invoice</div>
             </div>
             <div class="search-actions">
+                <button class="btn-refresh" id="btnRefresh" onclick="fetchData()"
+                    title="Refresh data from Google Sheets">
+                    🔄 Refresh
+                </button>
+                <button class="btn-email" id="btnEmailAll" disabled onclick="emailAllInvoices()">
+                    📧 Email All
+                </button>
                 <button class="btn-generate" id="btnGenerateAll" disabled onclick="generateAllInvoices()">
                     📦 Generate All
                 </button>
@@ -1219,7 +1436,7 @@
             <div class="header-top">
                 <div class="company-brand">
                     <div class="logo-container">
-                        <img src="Logo.png" alt="PadosiAgents">
+                        <img src="logo.png" alt="PadosiAgents">
                     </div>
                     <div class="brand-text">
                         <div class="brand-name">PadosiAgents</div>
@@ -1377,10 +1594,59 @@
 
     <script>
         // ===== CONFIG =====
-        const SHEET_ID = '1A4JZyxJyNJonhJ1ee_CRL8oIPSShde6U1fhB_6PIvZc';
-        const CSV_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv`;
+        const DEFAULT_SHEET_ID = '1A4JZyxJyNJonhJ1ee_CRL8oIPSShde6U1fhB_6PIvZc';
+        let currentSheetId = DEFAULT_SHEET_ID;
+        let csvUrl = `https://docs.google.com/spreadsheets/d/${currentSheetId}/gviz/tq?tqx=out:csv`;
 
         let allUsers = [];
+
+        // ===== TOAST NOTIFICATIONS =====
+        function showToast(message, type = 'error', duration = 5000) {
+            const container = document.getElementById('toastContainer');
+            const icons = { error: '❌', success: '✅', warning: '⚠️' };
+            const toast = document.createElement('div');
+            toast.className = `toast ${type}`;
+            toast.innerHTML = `
+                <span class="toast-icon">${icons[type] || '❌'}</span>
+                <span>${message}</span>
+                <button class="toast-close" onclick="this.parentElement.classList.add('removing'); setTimeout(() => this.parentElement.remove(), 300);">✕</button>
+            `;
+            container.appendChild(toast);
+
+            // Auto-remove after duration
+            setTimeout(() => {
+                if (toast.parentElement) {
+                    toast.classList.add('removing');
+                    setTimeout(() => toast.remove(), 300);
+                }
+            }, duration);
+        }
+
+        // ===== EXTRACT SHEET ID FROM URL =====
+        function extractSheetId(url) {
+            // Matches: https://docs.google.com/spreadsheets/d/SHEET_ID/...
+            const match = url.match(/\/spreadsheets\/d\/([a-zA-Z0-9_-]+)/);
+            return match ? match[1] : null;
+        }
+
+        function loadSheet() {
+            const input = document.getElementById('sheetUrlInput').value.trim();
+            if (!input) {
+                showToast('Please paste a Google Sheet URL.', 'warning');
+                return;
+            }
+
+            const sheetId = extractSheetId(input);
+            if (!sheetId) {
+                showToast('Invalid Google Sheet URL. Paste a link like: https://docs.google.com/spreadsheets/d/SHEET_ID/edit', 'error');
+                return;
+            }
+
+            currentSheetId = sheetId;
+            csvUrl = `https://docs.google.com/spreadsheets/d/${currentSheetId}/gviz/tq?tqx=out:csv`;
+            console.log('Loading sheet:', currentSheetId);
+            fetchData();
+        }
 
         // ===== DOM REFS =====
         const searchInput = document.getElementById('searchInput');
@@ -1523,12 +1789,28 @@
             }
         }
 
-        // ===== FETCH DATA =====
+        // ===== FETCH DATA (with retry) =====
+        async function fetchWithRetry(url, retries = 3) {
+            // Add cache-busting timestamp to always get fresh data
+            const bustUrl = url + '&_t=' + Date.now();
+            for (let i = 0; i < retries; i++) {
+                try {
+                    const res = await fetch(bustUrl, { cache: 'no-store' });
+                    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+                    return await res.text();
+                } catch (e) {
+                    console.warn(`Fetch attempt ${i + 1}/${retries} failed:`, e.message);
+                    if (i === retries - 1) throw e;
+                    await new Promise(r => setTimeout(r, 1000 * Math.pow(2, i))); // 1s, 2s, 4s
+                }
+            }
+        }
+
         async function fetchData() {
             loadingBar.classList.remove('hidden');
+            searchStats.innerHTML = `<span class="stat-chip">⏳ Loading data from Google Sheets...</span>`;
             try {
-                const res = await fetch(CSV_URL);
-                const text = await res.text();
+                const text = await fetchWithRetry(csvUrl);
                 const rows = parseCSV(text);
                 allUsers = csvToObjects(rows);
 
@@ -1548,11 +1830,25 @@
             <span class="stat-chip"><span class="num">${completed}</span> Paid</span>
             <span class="stat-chip"><span class="num">${pending}</span> Pending</span>
         `;
-                // Enable Generate All button
+                // Enable Generate All & Email All buttons
                 document.getElementById('btnGenerateAll').disabled = false;
+                document.getElementById('btnEmailAll').disabled = false;
             } catch (e) {
-                searchStats.innerHTML = `<span class="stat-chip" style="color:var(--red-500)">⚠️ Failed to load data. Check your internet connection.</span>`;
+                searchStats.innerHTML = `<span class="stat-chip" style="color:var(--red-500)">⚠️ Failed to load data. <a href="#" onclick="event.preventDefault(); fetchData();" style="color:#3b82f6;text-decoration:underline;cursor:pointer;">Retry</a></span>`;
                 console.error('Fetch error:', e);
+
+                // Show toast with specific error message
+                let msg = 'Could not load Google Sheet data.';
+                if (e.message.includes('HTTP 401') || e.message.includes('HTTP 403')) {
+                    msg = 'This Google Sheet is private or not shared. Please make it public (Anyone with the link → Viewer).';
+                } else if (e.message.includes('HTTP 404')) {
+                    msg = 'Google Sheet not found. Please check the URL and try again.';
+                } else if (e.message.includes('Failed to fetch') || e.message.includes('ERR_')) {
+                    msg = 'Network error — check your internet connection and try again.';
+                } else {
+                    msg = `Failed to load sheet: ${e.message}`;
+                }
+                showToast(msg, 'error');
             }
             loadingBar.classList.add('hidden');
         }
@@ -1817,6 +2113,105 @@
                 overlay.classList.add('hidden');
                 btnGen.disabled = false;
             }, 2000);
+        }
+    </script>
+
+    <!-- Email All Invoices -->
+    <script>
+        async function emailAllInvoices() {
+            const overlay = document.getElementById('progressOverlay');
+            const fill = document.getElementById('progressFill');
+            const status = document.getElementById('progressStatus');
+            const counter = document.getElementById('progressCounter');
+            const title = overlay.querySelector('.pc-title');
+            const sub = overlay.querySelector('.pc-sub');
+            const btnEmail = document.getElementById('btnEmailAll');
+
+            // Update overlay text for email mode
+            title.textContent = '📧 Emailing Invoices';
+            sub.textContent = 'Generating and emailing invoices to all customers...';
+            overlay.classList.remove('hidden');
+            fill.style.width = '0%';
+            btnEmail.disabled = true;
+
+            let sent = 0, failed = 0, skipped = 0;
+
+            for (let i = 0; i < allUsers.length; i++) {
+                const user = allUsers[i];
+                const name = user['Full Name'] || 'Unknown';
+                const email = user['Email'] || '';
+                const id = user['ID'] || (i + 1);
+                const invoiceNumber = `PA-2026-${String(id).padStart(3, '0')}`;
+
+                const pct = Math.round(((i + 1) / allUsers.length) * 100);
+                fill.style.width = pct + '%';
+                counter.textContent = `${i + 1} / ${allUsers.length}`;
+
+                // Skip users without email
+                if (!email || !email.includes('@')) {
+                    status.textContent = `⏭️ Skipping ${name} (no email)`;
+                    skipped++;
+                    continue;
+                }
+
+                status.textContent = `📧 Emailing ${name} (${email})...`;
+
+                try {
+                    // Populate invoice for this user
+                    selectUser(user);
+                    await new Promise(r => setTimeout(r, 200));
+
+                    // Capture invoice as image
+                    const invoicePage = document.getElementById('invoicePage');
+                    const canvas = await html2canvas(invoicePage, {
+                        scale: 2,
+                        useCORS: true,
+                        backgroundColor: '#ffffff',
+                        logging: false
+                    });
+                    const imageBase64 = canvas.toDataURL('image/png');
+
+                    // Send to API
+                    const res = await fetch('/api/send-invoice', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            email: email,
+                            name: name,
+                            invoiceNumber: invoiceNumber,
+                            imageBase64: imageBase64
+                        })
+                    });
+
+                    const data = await res.json();
+                    if (data.success) {
+                        sent++;
+                        status.textContent = `✅ Sent to ${name} (${email})`;
+                    } else {
+                        failed++;
+                        status.textContent = `❌ Failed: ${name} — ${data.error || 'Unknown error'}`;
+                    }
+                } catch (err) {
+                    failed++;
+                    status.textContent = `❌ Error: ${name} — ${err.message}`;
+                    console.error(`Email failed for ${name}:`, err);
+                }
+
+                // Small delay between emails to avoid rate limiting
+                await new Promise(r => setTimeout(r, 500));
+            }
+
+            // Final summary
+            fill.style.width = '100%';
+            status.textContent = `✅ Done! ${sent} sent, ${failed} failed, ${skipped} skipped (no email).`;
+
+            // Reset overlay text and re-enable button after 3s
+            setTimeout(() => {
+                overlay.classList.add('hidden');
+                title.textContent = 'Generating Invoice Images';
+                sub.textContent = 'Please wait while we generate images for all users...';
+                btnEmail.disabled = false;
+            }, 3000);
         }
     </script>
 
